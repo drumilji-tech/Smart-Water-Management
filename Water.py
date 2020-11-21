@@ -6,7 +6,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.svm import SVR
-from sklearn.metrics import accuracy_score,r2_score,mean_squared_error
+from sklearn.metrics import accuracy_score,r2_score,mean_squared_error,accuracy_score
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import ShuffleSplit
 def main():
@@ -50,8 +50,7 @@ def main():
             Model = LinearRegression()
             Model.fit(x_train,y_train)
             y_pred = Model.predict(x_test)
-            cv=ShuffleSplit(n_splits=7,test_size=0.35,random_state=100)
-            st.write("Accuracy Score:",cross_val_score(Model, x= data[['Consumption']],y= data[['Total Charges']],cv=cv).mean().round(4))
+            st.write("Accuracy Score:",accuracy_score(y_test,y_pred).round(4))
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
             st.write("Mean Squared Error:",mean_squared_error(y_test,y_pred).round(4))
 
@@ -71,8 +70,7 @@ def main():
             Model.fit(x_train,y_train)
         
             y_pred = Model.predict(x_test)
-            cv=ShuffleSplit(n_splits=7,test_size=0.35,random_state=100)
-            st.write("Accuracy Score:",cross_val_score(Model, x= data[['Consumption']],y= data[['Total Charges']],cv=cv).mean().round(4))
+            st.write("Accuracy Score:",accuracy_score(y_test,y_pred).round(4))
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
             st.write("Mean Squared Error:",mean_squared_error(y_test,y_pred).round(4))
             
@@ -88,8 +86,7 @@ def main():
             model = DecisionTreeRegressor(criterion=criterion, splitter=splitter)
             model.fit(x_train, y_train)
             y_pred = model.predict(x_test)
-            cv=ShuffleSplit(n_splits=7,test_size=0.35,random_state=100)
-            st.write("Accuracy Score:",cross_val_score(Model, x= data[['Consumption']],y= data[['Total Charges']],cv=cv).mean().round(4))
+            st.write("Accuracy Score:",accuracy_score(y_test,y_pred).round(4))
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
             st.write("Mean Squared Error:",mean_squared_error(y_test,y_pred).round(4))
        
@@ -105,8 +102,7 @@ def main():
             model.fit(x_train, y_train)
         
             y_pred = model.predict(x_test)
-            cv=ShuffleSplit(n_splits=7,test_size=0.35,random_state=100)
-            st.write("Accuracy Score:",cross_val_score(Model, x= data[['Consumption']],y= data[['Total Charges']],cv=cv).mean().round(4))
+            st.write("Accuracy Score:",accuracy_score(y_test,y_pred).round(4))
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
             st.write("Mean Squared Error:",mean_squared_error(y_test,y_pred).round(4))               
         
