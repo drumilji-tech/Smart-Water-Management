@@ -40,7 +40,9 @@ def main():
         return x_train,x_test,y_train,y_test
      
    
- def plot_metrics(metrics_list):
+    def plot_metrics(metrics_list):
+        x_train,x_test,y_train,y_test = split(data)
+        class_names = ['Consumption','Total Charges']
         if 'Accuracy Score' in metrics_list:
             st.subheader("Accuracy Score")
             plot_(Model,x_test,y_test,display_labels=class_names)
@@ -56,7 +58,7 @@ def main():
             plot_(Model,x_test,y_test,display_labels=class_names)
             st.pyplot()
      
-    x_train,x_test,y_train,y_test = split(data)
+    
 
     
     st.sidebar.subheader('Choose Model')
