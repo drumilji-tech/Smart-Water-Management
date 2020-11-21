@@ -50,7 +50,7 @@ def main():
             Model = LinearRegression()
             Model.fit(x_train,y_train)
             y_pred = Model.predict(x_test)
-            st.write("Accuracy Score:",accuracy_score(x_test,y_test).round(4))
+            
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
             st.write("Mean Squared Error:",mean_squared_error(y_test,y_pred).round(4))
 
@@ -70,7 +70,7 @@ def main():
             Model.fit(x_train,y_train)
         
             y_pred = Model.predict(x_test)
-            st.write("Accuracy Score:",accuracy_score(y_test,y_pred).round(4))
+
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
             st.write("Mean Squared Error:",mean_squared_error(y_test,y_pred).round(4))
             
@@ -86,7 +86,7 @@ def main():
             model = DecisionTreeRegressor(criterion=criterion, splitter=splitter)
             model.fit(x_train, y_train)
             y_pred = model.predict(x_test)
-            st.write("Accuracy Score:",accuracy_score(y_test,y_pred).round(4))
+      
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
             st.write("Mean Squared Error:",mean_squared_error(y_test,y_pred).round(4))
        
@@ -102,7 +102,7 @@ def main():
             model.fit(x_train, y_train)
         
             y_pred = model.predict(x_test)
-            st.write("Accuracy Score:",accuracy_score(y_test,y_pred).round(4))
+      
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
             st.write("Mean Squared Error:",mean_squared_error(y_test,y_pred).round(4))               
         
