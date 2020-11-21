@@ -83,7 +83,7 @@ def main():
         
         if st.sidebar.button("Regress",key='class'):
             st.subheader('Decision Tree Results')
-            model = DecisionTreeRegressor(criterion=criterion, splitter=splitter)
+            model = DecisionTreeRegressor()
             model.fit(x_train, y_train)
             y_pred = model.predict(x_test)
       
@@ -100,7 +100,7 @@ def main():
         
         if st.sidebar.button("Regress",key='class'):
             st.subheader('Decision Tree Results')
-            model = SVR(kernel=kernel,C=C_value)
+            model = SVR(kernel='linear',C=C_value)
             model.fit(x_train, y_train)
         
             y_pred = model.predict(x_test)
