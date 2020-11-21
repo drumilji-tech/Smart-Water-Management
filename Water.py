@@ -100,7 +100,7 @@ def main():
         
         if st.sidebar.button("Regress",key='class'):
             st.subheader('Decision Tree Results')
-            model = SVR(kernel='linear',C=C_value)
+            model = SVR()
             model.fit(x_train, y_train)
         
             y_pred = model.predict(x_test)
