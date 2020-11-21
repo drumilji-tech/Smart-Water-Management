@@ -7,6 +7,8 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.svm import SVR
 from sklearn.metrics import accuracy_score,r2_score,mean_squared_error
+from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import ShuffleSplit
 def main():
     st.title("Smart Water Management Using Data Science and Internet of Things(IOT)")
     st.sidebar.title("Machine Learning and its specifications")
@@ -48,7 +50,8 @@ def main():
             Model = LinearRegression()
             Model.fit(x_train,y_train)
             y_pred = Model.predict(x_test)
-            st.write("Accuracy Score:",accuracy_score(y_test,y_pred).round(4))
+            cv=ShuffleSplit(n_splits=7,test_size=0.35,random_state=100)
+            st.write("Accuracy Score:",cross_val_score(model,x,y,cv=cv).mean().round(4))
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
             st.write("Mean Squared Error:",mean_squared_error(y_test,y_pred).round(4))
 
@@ -68,23 +71,25 @@ def main():
             Model.fit(x_train,y_train)
         
             y_pred = Model.predict(x_test)
-            st.write("Accuracy Score:",accuracy_score(y_test,y_pred).round(4))
+            cv=ShuffleSplit(n_splits=7,test_size=0.35,random_state=100)
+            st.write("Accuracy Score:",cross_val_score(model,x,y,cv=cv).mean().round(4))
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
             st.write("Mean Squared Error:",mean_squared_error(y_test,y_pred).round(4))
             
     
     if Model == "Decision Tree":
         st.sidebar.subheader("Model Hyperparameters")
-        criterion= st.sidebar.radio('Criterion(measures the quality of split)', ('gini', 'entropy'), key='criterion')
-        splitter = st.sidebar.radio('Splitter (How to split at each node?)', ('best','random'), key='splitter')
+        criterion= st.sidebar.radio('Criterion(measures the quality of split)', ('Gini', 'Entropy'), key='criterion')
+        splitter = st.sidebar.radio('Splitter (How to split at each node?)', ('Best','Random'), key='splitter')
         metrics = st.sidebar.selectbox("Which metrics to plot?",('Accuracy Score','R2 Score','Mean Squared Error'),key='1')
         
-        if st.sidebar.button("Classify",key='class'):
+        if st.sidebar.button("Regress",key='class'):
             st.subheader('Decision Tree Results')
             model = DecisionTreeRegressor(criterion=criterion, splitter=splitter)
             model.fit(x_train, y_train)
             y_pred = model.predict(x_test)
-            st.write("Accuracy Score:",accuracy_score(y_test,y_pred).round(4))
+            cv=ShuffleSplit(n_splits=7,test_size=0.35,random_state=100)
+            st.write("Accuracy Score:",cross_val_score(model,x,y,cv=cv).mean().round(4))
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
             st.write("Mean Squared Error:",mean_squared_error(y_test,y_pred).round(4))
        
@@ -100,7 +105,8 @@ def main():
             model.fit(x_train, y_train)
         
             y_pred = model.predict(x_test)
-            st.write("Accuracy Score:",accuracy_score(y_test,y_pred).round(4))
+            cv=ShuffleSplit(n_splits=7,test_size=0.35,random_state=100)
+            st.write("Accuracy Score:",cross_val_score(model,x,y,cv=cv).mean().round(4))
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
             st.write("Mean Squared Error:",mean_squared_error(y_test,y_pred).round(4))               
         
