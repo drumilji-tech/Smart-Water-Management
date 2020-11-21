@@ -17,7 +17,7 @@ def main():
     
     st.markdown("So, Let's evaluate our model with different Evaluation metrices as the metrices provide us how effective our model is.")
     st.sidebar.markdown("Let\'s do it")
-    data = pd.read_csv('C:/Users/abcdr/OneDrive/Desktop/Water_Consumption_And_Cost__2013_-_2020_.csv')
+    data = pd.read_csv('https://github.com/drumilji-tech/Smart-Water-Management/blob/main/Water_Consumption_And_Cost__2013_-_2020_.csv')
     
     @st.cache(persist=True)
     def split(data):
