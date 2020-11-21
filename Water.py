@@ -106,7 +106,7 @@ def main():
         metrics_svm = st.sidebar.selectbox("Which metrics to plot?",('Accuracy Score','R2 Score','Mean Squared Error'))
         
         if st.sidebar.button("Regress",key='class'):
-            st.subheader('Decision Tree Results')
+            st.subheader('Support Vector Machine Results')
             model = SVR()
             model.fit(x_train, y_train)
         
