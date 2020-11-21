@@ -10,7 +10,7 @@ from sklearn.metrics import accuracy_score,r2_score,mean_squared_error,accuracy_
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import ShuffleSplit
 import numpy as np
-import seaborn as sns
+
 def main():
     st.title("Smart Water Management Using Data Science and Internet of Things(IOT)")
     st.sidebar.title("Machine Learning and its specifications")
