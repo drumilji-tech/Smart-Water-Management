@@ -43,16 +43,15 @@ def main():
     if Model == "Linear Regression":
         st.sidebar.subheader("Model Hyperparameters")
         max_iter_log = st.sidebar.slider("Maximum Number of Iterations",100,500,key='max_iter')
-        metrics_log = st.sidebar.selectbox("Which metrics to plot?",('Accuracy Score','R2 Score','Mean Squared Error'))
+        metrics_log = st.sidebar.selectbox("Which metrics to plot?",('R2 Score','Mean Squared Error'))
         
         if st.sidebar.button("Regress",key='class'):
             st.subheader("Linear Regression Results")
             Model = LinearRegression()
             Model.fit(x_train,y_train)
             y_pred = Model.predict(x_test)
-            st.write("Accuracy Score:",accuracy_score(y_test,y_pred).round(4))
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
-            st.write("Mean Squared Error:",mean_squared_error(y_test,y_pred).round(4))
+            st.write("Mean Squared Error:",np.sqrt(mean_squared_error(y_test,y_pred).round(4)))
 
         
            
@@ -62,7 +61,7 @@ def main():
         n_estimators = st.sidebar.number_input("The number of trees in the forest",100,5000,step=10,key='n_est')
         max_depth = st.sidebar.number_input("The maximum depth of the tree",1,20,step=1,key='max_depth')
         bootstrap = st.sidebar.radio("Bootstrap samples when building trees",('True','False'),key='bootstrap')
-        metrics = st.sidebar.selectbox("Which metrics to plot?",('Accuracy Score','R2 Score','Mean Squared Error'),key='1')
+        metrics = st.sidebar.selectbox("Which metrics to plot?",('R2 Score','Mean Squared Error'),key='1')
         
         if st.sidebar.button("Regress",key='class'):
             st.subheader("Random Forest Result")
@@ -70,25 +69,24 @@ def main():
             Model.fit(x_train,y_train)
         
             y_pred = Model.predict(x_test)
-            st.write("Accuracy Score:",accuracy_score(y_test,y_pred).round(4))
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
-            st.write("Mean Squared Error:",mean_squared_error(y_test,y_pred).round(4))
+            st.write("Mean Squared Error:",np.sqrt(mean_squared_error(y_test,y_pred).round(4)))
+
             
     
     if Model == "Decision Tree":
         st.sidebar.subheader("Model Hyperparameters")
-        criterion= st.sidebar.radio('Criterion(measures the quality of split)', ('Gini', 'Entropy'), key='criterion')
-        splitter = st.sidebar.radio('Splitter (How to split at each node?)', ('Best','Random'), key='splitter')
-        metrics = st.sidebar.selectbox("Which metrics to plot?",('Accuracy Score','R2 Score','Mean Squared Error'),key='1')
+      
+        metrics = st.sidebar.selectbox("Which metrics to plot?",('R2 Score','Mean Squared Error'),key='1')
         
         if st.sidebar.button("Regress",key='class'):
             st.subheader('Decision Tree Results')
-            model = DecisionTreeRegressor(criterion=criterion, splitter=splitter)
+            model = DecisionTreeRegressor()
             model.fit(x_train, y_train)
             y_pred = model.predict(x_test)
-            st.write("Accuracy Score:",accuracy_score(y_test,y_pred).round(4))
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
-            st.write("Mean Squared Error:",mean_squared_error(y_test,y_pred).round(4))
+            st.write("Mean Squared Error:",np.sqrt(mean_squared_error(y_test,y_pred).round(4)))
+
        
     if Model == "Support Vector Machine":
         st.sidebar.subheader("Model Hyperparameters")
@@ -97,14 +95,13 @@ def main():
         metrics_svm = st.sidebar.selectbox("Which metrics to plot?",('Accuracy Score','R2 Score','Mean Squared Error'))
         
         if st.sidebar.button("Regress",key='class'):
-            st.subheader('Decision Tree Results')
-            model = SVR(kernel=kernel,C=C_value)
+            st.subheader('Support Vector Machine Results')
+            model = SVR()
             model.fit(x_train, y_train)
         
             y_pred = model.predict(x_test)
-            st.write("Accuracy Score:",accuracy_score(y_test,y_pred).round(4))
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
-            st.write("Mean Squared Error:",mean_squared_error(y_test,y_pred).round(4))               
+            st.write("Mean Squared Error:",np.sqrt(mean_squared_error(y_test,y_pred).round(4)))             
         
     
      
