@@ -40,7 +40,21 @@ def main():
         return x_train,x_test,y_train,y_test
      
    
-             
+ def plot_metrics(metrics_list):
+        if 'Accuracy Score' in metrics_list:
+            st.subheader("Accuracy Score")
+            plot_(Model,x_test,y_test,display_labels=class_names)
+            st.pyplot()
+        
+        if 'R2 Score' in metrics_list:
+            st.subheader("R2 Score")
+            plot_(Model,x_test,y_test,display_labels=class_names)
+            st.pyplot()
+            
+        if 'Mean Squared Error' in metrics_list:
+            st.subheader("Mean Squared Error")
+            plot_(Model,x_test,y_test,display_labels=class_names)
+            st.pyplot()
      
     x_train,x_test,y_train,y_test = split(data)
 
