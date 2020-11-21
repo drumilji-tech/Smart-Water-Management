@@ -9,6 +9,7 @@ from sklearn.svm import SVR
 from sklearn.metrics import accuracy_score,r2_score,mean_squared_error,accuracy_score
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import ShuffleSplit
+import numpy as np
 def main():
     st.title("Smart Water Management Using Data Science and Internet of Things(IOT)")
     st.sidebar.title("Machine Learning and its specifications")
@@ -52,7 +53,7 @@ def main():
             y_pred = Model.predict(x_test)
             
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
-            st.write("Mean Squared Error:",mean_squared_error(y_test,y_pred).round(4))
+            st.write("Mean Squared Error:",np.sqrt(mean_squared_error(y_test,y_pred).round(4)))
 
         
            
@@ -72,13 +73,12 @@ def main():
             y_pred = Model.predict(x_test)
 
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
-            st.write("Mean Squared Error:",mean_squared_error(y_test,y_pred).round(4))
+            st.write("Mean Squared Error:",np.sqrt(mean_squared_error(y_test,y_pred).round(4)))
             
     
     if Model == "Decision Tree":
         st.sidebar.subheader("Model Hyperparameters")
-        criterion= st.sidebar.radio('Criterion(measures the quality of split)', ('Gini', 'Entropy'), key='criterion')
-        splitter = st.sidebar.radio('Splitter (How to split at each node?)', ('Best','Random'), key='splitter')
+        
         metrics = st.sidebar.selectbox("Which metrics to plot?",('Accuracy Score','R2 Score','Mean Squared Error'),key='1')
         
         if st.sidebar.button("Regress",key='class'):
@@ -88,8 +88,10 @@ def main():
             y_pred = model.predict(x_test)
       
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
-            st.write("Mean Squared Error:",mean_squared_error(y_test,y_pred).round(4))
-       
+            st.write("Mean Squared Error:",np.sqrt(mean_squared_error(y_test,y_pred).round(4)))
+             
+            
+            
     if Model == "Support Vector Machine":
         st.sidebar.subheader("Model Hyperparameters")
         kernel= st.sidebar.radio('Type of Kernel to be selected', ('Linear', 'RBF','Ploynomial'), key='kernel')
@@ -104,7 +106,7 @@ def main():
             y_pred = model.predict(x_test)
       
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
-            st.write("Mean Squared Error:",mean_squared_error(y_test,y_pred).round(4))               
+            st.write("Mean Squared Error:",np.sqrt(mean_squared_error(y_test,y_pred).round(4)))           
         
     
      
