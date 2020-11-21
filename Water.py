@@ -22,8 +22,8 @@ def main():
     @st.cache(persist=True)
     def split(data):
          
-         x= data['Consumption (HCF)']
-         y= data['Total Charges']
+         x= data[['Consumption']]
+         y= data[['Total Charges']]
          
          
          x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.3,random_state=101)
@@ -47,7 +47,6 @@ def main():
             st.subheader("Linear Regression Results")
             Model = LinearRegression()
             Model.fit(x_train,y_train)
-            accuracy = Model.score(x_test,y_test)
             y_pred = Model.predict(x_test)
             st.write("Accuracy Score:",accuracy_score(y_test,y_pred).round(4))
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
@@ -67,7 +66,7 @@ def main():
             st.subheader("Random Forest Result")
             Model = RandomForestRegressor(n_estimators=n_estimators,max_depth=max_depth,bootstrap=bootstrap)
             Model.fit(x_train,y_train)
-            accuracy = Model.score(x_test,y_test)
+        
             y_pred = Model.predict(x_test)
             st.write("Accuracy Score:",accuracy_score(y_test,y_pred).round(4))
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
@@ -84,7 +83,6 @@ def main():
             st.subheader('Decision Tree Results')
             model = DecisionTreeRegressor(criterion=criterion, splitter=splitter)
             model.fit(x_train, y_train)
-            accuracy = model.score(x_test, y_test)
             y_pred = model.predict(x_test)
             st.write("Accuracy Score:",accuracy_score(y_test,y_pred).round(4))
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
@@ -100,7 +98,7 @@ def main():
             st.subheader('Decision Tree Results')
             model = SVR(kernel=kernel,C=C_value)
             model.fit(x_train, y_train)
-            accuracy = model.score(x_test, y_test)
+        
             y_pred = model.predict(x_test)
             st.write("Accuracy Score:",accuracy_score(y_test,y_pred).round(4))
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
