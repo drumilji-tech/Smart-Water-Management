@@ -32,10 +32,8 @@ def main():
         data = data[(data['Consumption (HCF)'] > (first_quartile - 3 * iqr)) &(data['Consumption (HCF)'] < (third_quartile + 3 * iqr))]
         x= data[['Consumption']]
         y= data[['Total Charges']]
-         
-         
-         x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.3,random_state=101)
-         return x_train,x_test,y_train,y_test
+        x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.3,random_state=101)
+        return x_train,x_test,y_train,y_test
      
    
              
