@@ -10,6 +10,7 @@ from sklearn.metrics import accuracy_score,r2_score,mean_squared_error,accuracy_
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import ShuffleSplit
 import numpy as np
+import seaborn as sns
 def main():
     st.title("Smart Water Management Using Data Science and Internet of Things(IOT)")
     st.sidebar.title("Machine Learning and its specifications")
@@ -25,12 +26,18 @@ def main():
     @st.cache(persist=True)
     def split(data):
          
-         x= data[['Consumption']]
-         y= data[['Total Charges']]
          
          
-         x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.3,random_state=101)
-         return x_train,x_test,y_train,y_test
+         # Calculate first and third quartile
+        first_quartile = data['Consumption'].describe()['25%']
+        third_quartile = data['Consumption'].describe()['75%']
+        # Interquartile range
+        iqr = third_quartile - first_quartile
+        data = data[(data['Consumption'] > (first_quartile - 3 * iqr)) & (data['Consumption'] < (third_quartile + 3 * iqr))]
+        x= data[['Consumption']]
+        y= data[['Total Charges']]
+        x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.3,random_state=101)
+        return x_train,x_test,y_train,y_test
      
    
              
