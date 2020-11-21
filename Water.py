@@ -9,8 +9,6 @@ from sklearn.svm import SVR
 from sklearn.metrics import accuracy_score,r2_score,mean_squared_error,accuracy_score
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import ShuffleSplit
-import numpy as np
-
 def main():
     st.title("Smart Water Management Using Data Science and Internet of Things(IOT)")
     st.sidebar.title("Machine Learning and its specifications")
@@ -26,22 +24,17 @@ def main():
     @st.cache(persist=True)
     def split(data):
          
+         x= data[['Consumption']]
+         y= data[['Total Charges']]
          
          
-         # Calculate first and third quartile
-        first_quartile = data['Consumption'].describe()['25%']
-        third_quartile = data['Consumption'].describe()['75%']
-        # Interquartile range
-        iqr = third_quartile - first_quartile
-        data = data[(data['Consumption'] > (first_quartile - 3 * iqr)) & (data['Consumption'] < (third_quartile + 3 * iqr))]
-        x= data[['Consumption']]
-        y= data[['Total Charges']]
-        x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.3,random_state=101)
-        return x_train,x_test,y_train,y_test
+         x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.3,random_state=101)
+         return x_train,x_test,y_train,y_test
      
    
-    
-    
+             
+     
+    x_train,x_test,y_train,y_test = split(data)
 
     
     st.sidebar.subheader('Choose Model')
@@ -57,9 +50,9 @@ def main():
             Model = LinearRegression()
             Model.fit(x_train,y_train)
             y_pred = Model.predict(x_test)
-            
+            st.write("Accuracy Score:",accuracy_score(y_test,y_pred).round(4))
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
-            st.write("Mean Squared Error:",np.sqrt(mean_squared_error(y_test,y_pred).round(4)))
+            st.write("Mean Squared Error:",mean_squared_error(y_test,y_pred).round(4))
 
         
            
@@ -77,27 +70,26 @@ def main():
             Model.fit(x_train,y_train)
         
             y_pred = Model.predict(x_test)
-
+            st.write("Accuracy Score:",accuracy_score(y_test,y_pred).round(4))
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
-            st.write("Mean Squared Error:",np.sqrt(mean_squared_error(y_test,y_pred).round(4)))
+            st.write("Mean Squared Error:",mean_squared_error(y_test,y_pred).round(4))
             
     
     if Model == "Decision Tree":
         st.sidebar.subheader("Model Hyperparameters")
-        
+        criterion= st.sidebar.radio('Criterion(measures the quality of split)', ('Gini', 'Entropy'), key='criterion')
+        splitter = st.sidebar.radio('Splitter (How to split at each node?)', ('Best','Random'), key='splitter')
         metrics = st.sidebar.selectbox("Which metrics to plot?",('Accuracy Score','R2 Score','Mean Squared Error'),key='1')
         
         if st.sidebar.button("Regress",key='class'):
             st.subheader('Decision Tree Results')
-            model = DecisionTreeRegressor()
+            model = DecisionTreeRegressor(criterion=criterion, splitter=splitter)
             model.fit(x_train, y_train)
             y_pred = model.predict(x_test)
-      
+            st.write("Accuracy Score:",accuracy_score(y_test,y_pred).round(4))
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
-            st.write("Mean Squared Error:",np.sqrt(mean_squared_error(y_test,y_pred).round(4)))
-             
-            
-            
+            st.write("Mean Squared Error:",mean_squared_error(y_test,y_pred).round(4))
+       
     if Model == "Support Vector Machine":
         st.sidebar.subheader("Model Hyperparameters")
         kernel= st.sidebar.radio('Type of Kernel to be selected', ('Linear', 'RBF','Ploynomial'), key='kernel')
@@ -105,14 +97,14 @@ def main():
         metrics_svm = st.sidebar.selectbox("Which metrics to plot?",('Accuracy Score','R2 Score','Mean Squared Error'))
         
         if st.sidebar.button("Regress",key='class'):
-            st.subheader('Support Vector Machine Results')
-            model = SVR()
+            st.subheader('Decision Tree Results')
+            model = SVR(kernel=kernel,C=C_value)
             model.fit(x_train, y_train)
         
             y_pred = model.predict(x_test)
-      
+            st.write("Accuracy Score:",accuracy_score(y_test,y_pred).round(4))
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
-            st.write("Mean Squared Error:",np.sqrt(mean_squared_error(y_test,y_pred).round(4)))           
+            st.write("Mean Squared Error:",mean_squared_error(y_test,y_pred).round(4))               
         
     
      
