@@ -59,7 +59,13 @@ def main():
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
             st.write("Mean Squared Error:",np.sqrt(mean_squared_error(y_test,y_pred).round(4)))
             st.header("Consumptions VS Total Charges")
-            st.line_chart(data[['Consumption','Total Charges']],height=400)
+            fig, ax = plt.subplots()
+            ax.scatter(x_train, y_train, color="green") 
+            ax.plot(x_train, x_pred, color="red")
+            ax.title("Salary vs Experience (Training Dataset)")  
+            ax.xlabel("Years of Experience")  
+            ax.ylabel("Salary(In Rupees)") 
+            st.pyplot(fig)
 
         
            
