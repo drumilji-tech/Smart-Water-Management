@@ -32,6 +32,7 @@ def main():
         data = data[(data['Consumption'] > (first_quartile - 3 * iqr)) &(data['Consumption'] < (third_quartile + 3 * iqr))]
         x= data[['Consumption']]
         y= data[['Total Charges']]
+        columns=data[['Consumption','Total Charges']]
         x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.3,random_state=101)
         return x_train,x_test,y_train,y_test
      
@@ -56,7 +57,8 @@ def main():
             y_pred = Model.predict(x_test)
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
             st.write("Mean Squared Error:",np.sqrt(mean_squared_error(y_test,y_pred).round(4)))
-            st.line_chart(data)
+            st.header("Consumptions VS Total Charges")
+            st.line_chart(columns)
 
         
            
