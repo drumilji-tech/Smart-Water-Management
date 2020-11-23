@@ -61,9 +61,7 @@ def main():
             st.header("Consumptions VS Total Charges")
             fig, ax = plt.subplots()
             ax.scatter(x_test,y_pred ,color='red')
-            ax.xlabel("Consumptions")
-            ax.ylabel("Charges")
-
+           
             st.pyplot(fig)
 
         
