@@ -61,7 +61,6 @@ def main():
             st.header("Consumptions VS Total Charges")
             fig, ax = plt.subplots()
             ax.scatter(x_train, y_train, color="green") 
-            ax.plot(x_train, x_pred, color="red")
             ax.title("Salary vs Experience (Training Dataset)")  
             ax.xlabel("Years of Experience")  
             ax.ylabel("Salary(In Rupees)") 
