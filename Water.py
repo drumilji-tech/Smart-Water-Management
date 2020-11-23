@@ -56,11 +56,10 @@ def main():
             Model = LinearRegression()
             Model.fit(x_train,y_train)
             y_pred = Model.predict(x_test)
-            result=[['y_test','y_pred']]
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
             st.write("Mean Squared Error:",np.sqrt(mean_squared_error(y_test,y_pred).round(4)))
             st.header("Consumptions VS Total Charges")
-            st.area_chart(result,height=500)
+            st.line_chart(data[['Consumption','Total Charges']],height=400)
 
         
            
