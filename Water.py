@@ -59,9 +59,7 @@ def main():
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
             st.write("Mean Squared Error:",np.sqrt(mean_squared_error(y_test,y_pred).round(4)))
             st.header("Consumptions VS Total Charges")
-            fig, ax = plt.subplots()
-            ax.scatter(data[['Consumptions','Total Charges']])
-            st.pyplot(fig)
+            st.area_chart(data[['Consumption','Total Charges']])
 
         
            
@@ -81,6 +79,7 @@ def main():
             y_pred = Model.predict(x_test)
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
             st.write("Mean Squared Error:",np.sqrt(mean_squared_error(y_test,y_pred).round(4)))
+            st.area_chart(data[['Consumption','Total Charges']])
 
             
     
@@ -96,6 +95,7 @@ def main():
             y_pred = model.predict(x_test)
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
             st.write("Mean Squared Error:",np.sqrt(mean_squared_error(y_test,y_pred).round(4)))
+            st.area_chart(data[['Consumption','Total Charges']])
 
        
     if Model == "Support Vector Machine":
@@ -111,7 +111,8 @@ def main():
         
             y_pred = model.predict(x_test)
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
-            st.write("Mean Squared Error:",np.sqrt(mean_squared_error(y_test,y_pred).round(4)))             
+            st.write("Mean Squared Error:",np.sqrt(mean_squared_error(y_test,y_pred).round(4))) 
+            st.area_chart(data[['Consumption','Total Charges']])
         
     
      
