@@ -60,7 +60,7 @@ def main():
             st.write("Mean Squared Error:",np.sqrt(mean_squared_error(y_test,y_pred).round(4)))
             st.header("Consumptions VS Total Charges")
             fig, ax = plt.subplots()
-            ax.scatter(y_test,y_pred ,color='red')
+            ax.scatter(y_test,y_pred ,color='blue')
            
             st.pyplot(fig)
 
@@ -82,7 +82,12 @@ def main():
             y_pred = Model.predict(x_test)
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
             st.write("Mean Squared Error:",np.sqrt(mean_squared_error(y_test,y_pred).round(4)))
-            st.line_chart(data[['Consumption','Total Charges']],height=400)
+            st.header("Consumptions VS Total Charges")
+            fig, ax = plt.subplots()
+            ax.scatter(y_test,y_pred ,color='red')
+           
+            st.pyplot(fig)
+           
 
             
     
@@ -98,7 +103,11 @@ def main():
             y_pred = model.predict(x_test)
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
             st.write("Mean Squared Error:",np.sqrt(mean_squared_error(y_test,y_pred).round(4)))
-            st.line_chart(data[['Consumption','Total Charges']],height=400)
+            st.header("Consumptions VS Total Charges")
+            fig, ax = plt.subplots()
+            ax.scatter(y_test,y_pred ,color='green')
+           
+            st.pyplot(fig)
 
        
     if Model == "Support Vector Machine":
@@ -115,8 +124,11 @@ def main():
             y_pred = model.predict(x_test)
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
             st.write("Mean Squared Error:",np.sqrt(mean_squared_error(y_test,y_pred).round(4))) 
-            st.line_chart(data[['Consumption','Total Charges']],height=400)
-        
+            st.header("Consumptions VS Total Charges")
+            fig, ax = plt.subplots()
+            ax.scatter(y_test,y_pred ,color='brown')
+           
+            st.pyplot(fig)
     
      
     
