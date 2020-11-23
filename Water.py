@@ -1,6 +1,7 @@
 import streamlit as st
 st.set_option('deprecation.showPyplotGlobalUse', False)
 import pandas as pd
+import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.tree import DecisionTreeRegressor
@@ -58,7 +59,9 @@ def main():
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
             st.write("Mean Squared Error:",np.sqrt(mean_squared_error(y_test,y_pred).round(4)))
             st.header("Consumptions VS Total Charges")
-            st.vega_lite_chart(data[['Consumption','Total Charges']],spec=None, use_container_width=False)
+            fig, ax = plt.subplots()
+            ax.scatter(data[['Consumptions','Total Charges']])
+            st.pyplot(fig)
 
         
            
