@@ -60,7 +60,7 @@ def main():
             st.write("Mean Squared Error:",np.sqrt(mean_squared_error(y_test,y_pred).round(4)))
             st.header("Consumptions VS Total Charges")
             fig, ax = plt.subplots()
-            ax.scatter(y_test,y_pred color='red') 
+            ax.scatter(y_test,y_pred ,color='red') 
 
             st.pyplot(fig)
 
