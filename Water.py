@@ -56,6 +56,7 @@ def main():
             y_pred = Model.predict(x_test)
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
             st.write("Mean Squared Error:",np.sqrt(mean_squared_error(y_test,y_pred).round(4)))
+            st.line_chart(data)
 
         
            
