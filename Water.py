@@ -49,7 +49,7 @@ def main():
     if Model == "Linear Regression":
         st.sidebar.subheader("Model Hyperparameters")
         max_iter_log = st.sidebar.slider("Maximum Number of Iterations",100,500,key='max_iter')
-        metrics_log = st.sidebar.selectbox("Which metrics to plot?",('R2 Score','Mean Squared Error'))
+        metrics_log = st.sidebar.selectbox("Performance Metrics",('R2 Score','Mean Squared Error'))
         
         if st.sidebar.button("Regress",key='class'):
             st.subheader("Linear Regression Results")
@@ -72,7 +72,7 @@ def main():
         n_estimators = st.sidebar.number_input("The number of trees in the forest",100,5000,step=10,key='n_est')
         max_depth = st.sidebar.number_input("The maximum depth of the tree",1,20,step=1,key='max_depth')
         bootstrap = st.sidebar.radio("Bootstrap samples when building trees",('True','False'),key='bootstrap')
-        metrics = st.sidebar.selectbox("Which metrics to plot?",('R2 Score','Mean Squared Error'),key='1')
+        metrics = st.sidebar.selectbox("Performance Metrics",('R2 Score','Mean Squared Error'),key='1')
         
         if st.sidebar.button("Regress",key='class'):
             st.subheader("Random Forest Result")
@@ -94,7 +94,7 @@ def main():
     if Model == "Decision Tree":
         st.sidebar.subheader("Model Hyperparameters")
       
-        metrics = st.sidebar.selectbox("Which metrics to plot?",('R2 Score','Mean Squared Error'),key='1')
+        metrics = st.sidebar.selectbox("Performance Metrics",('R2 Score','Mean Squared Error'),key='1')
         
         if st.sidebar.button("Regress",key='class'):
             st.subheader('Decision Tree Results')
@@ -114,7 +114,7 @@ def main():
         st.sidebar.subheader("Model Hyperparameters")
         kernel= st.sidebar.radio('Type of Kernel to be selected', ('Linear', 'RBF','Ploynomial'), key='kernel')
         C_value = st.sidebar.slider("Select C Value",1,20,key='C_value')
-        metrics_svm = st.sidebar.selectbox("Which metrics to plot?",('Accuracy Score','R2 Score','Mean Squared Error'))
+        metrics_svm = st.sidebar.selectbox("Performance Metrics ",('R2 Score','Mean Squared Error'))
         
         if st.sidebar.button("Regress",key='class'):
             st.subheader('Support Vector Machine Results')
