@@ -58,7 +58,7 @@ def main():
             st.write("R2 Value:",r2_score(y_test,y_pred).round(4))
             st.write("Mean Squared Error:",np.sqrt(mean_squared_error(y_test,y_pred).round(4)))
             st.header("Consumptions VS Total Charges")
-            st.vega_lite_chart(data[['Consumption','Total Charges']])
+            st.bokeh_chart(data[['Consumption','Total Charges']],use_container_width=True)
 
         
            
